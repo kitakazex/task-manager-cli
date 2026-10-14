@@ -6,23 +6,19 @@ public class Main {
     public static void main(String[] args) {
 
         TaskRepository repository = new TaskRepository();
+        TaskService service = new TaskService(repository);
 
-        Task task1 = new Task(
-            1,
+        service.addTask(
             "Java Silverの学習",
             "クラス設計の復習"
         );
 
-        Task task2 = new Task(
-            2,
+        service.addTask(
             "GitHubの操作練習",
             "コミットとPushの確認"
         );
-
-        repository.save(task1);
-        repository.save(task2);
-
-        List<Task> tasks = repository.findAll();
+        
+        List<Task> tasks = service.getAllTasks();
 
         for (Task task : tasks) {
             System.out.println(
